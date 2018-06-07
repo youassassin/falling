@@ -27,7 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
     
 
     @objc func x() {
-        var position = CGPoint(x: 200, y: 0)
+        var position = CGPoint(x: 0, y: 0)
         var circle = SKShapeNode(circleOfRadius: self.radius)
         var maxHoles = self.maxBreaks()
         circle.position = position
@@ -39,8 +39,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
         circle.physicsBody = SKPhysicsBody(edgeLoopFrom: circle.path!)
 //        self.addChild(circle)
         var offset = atan(min(screenW, screenH)/max(screenH, screenW))
-        var arc = UIBezierPath(arcCenter: position, radius: self.radius, startAngle: CGFloat.pi/2, endAngle: CGFloat.pi/2+offset, clockwise: true)
+        var arc = UIBezierPath(arcCenter: position, radius: self.radius/2, startAngle: 3*CGFloat.pi/2-offset, endAngle: 3*CGFloat.pi/2+offset, clockwise: true)
         var square = SKShapeNode(path: arc.cgPath)
+        square.strokeColor = SKColor.white
+        square.lineWidth = 10.0
+        square.fillColor = SKColor.clear
+        square.physicsBody = SKPhysicsBody(c)
         self.addChild(square)
         
         if debug {

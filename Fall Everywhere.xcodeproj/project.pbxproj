@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6566737A20C79B1200E088DD /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 6566737920C79B1200E088DD /* player.png */; };
 		65CAD12320AE0E0B00886CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAD12220AE0E0B00886CDB /* AppDelegate.swift */; };
 		65CAD12520AE0E0B00886CDB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD12420AE0E0B00886CDB /* GameScene.sks */; };
 		65CAD12720AE0E0B00886CDB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD12620AE0E0B00886CDB /* Actions.sks */; };
@@ -17,7 +18,6 @@
 		65CAD13320AE0E0E00886CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD13120AE0E0E00886CDB /* LaunchScreen.storyboard */; };
 		65CAD13E20AE0E0E00886CDB /* Fall_EverywhereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAD13D20AE0E0E00886CDB /* Fall_EverywhereTests.swift */; };
 		65CAD14920AE0E0E00886CDB /* Fall_EverywhereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAD14820AE0E0E00886CDB /* Fall_EverywhereUITests.swift */; };
-		65CAD15720BC678600886CDB /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD15620BC678500886CDB /* player.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6566737920C79B1200E088DD /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		65CAD11F20AE0E0B00886CDB /* Fall Everywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Everywhere.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CAD12220AE0E0B00886CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65CAD12420AE0E0B00886CDB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -54,8 +55,6 @@
 		65CAD14420AE0E0E00886CDB /* Fall EverywhereUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fall EverywhereUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CAD14820AE0E0E00886CDB /* Fall_EverywhereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fall_EverywhereUITests.swift; sourceTree = "<group>"; };
 		65CAD14A20AE0E0E00886CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65CAD15620BC678500886CDB /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player.png; path = ../../../Desktop/Work/player.png; sourceTree = "<group>"; };
-		65CAD15820BC678900886CDB /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +89,6 @@
 				65CAD13C20AE0E0E00886CDB /* Fall EverywhereTests */,
 				65CAD14720AE0E0E00886CDB /* Fall EverywhereUITests */,
 				65CAD12020AE0E0B00886CDB /* Products */,
-				65CAD15620BC678500886CDB /* player.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,10 +111,10 @@
 				65CAD12820AE0E0B00886CDB /* GameScene.swift */,
 				65CAD12A20AE0E0B00886CDB /* GameViewController.swift */,
 				65CAD12C20AE0E0B00886CDB /* Main.storyboard */,
-				65CAD15820BC678900886CDB /* player.png */,
 				65CAD12F20AE0E0E00886CDB /* Assets.xcassets */,
 				65CAD13120AE0E0E00886CDB /* LaunchScreen.storyboard */,
 				65CAD13420AE0E0E00886CDB /* Info.plist */,
+				6566737920C79B1200E088DD /* player.png */,
 			);
 			path = "Fall Everywhere";
 			sourceTree = "<group>";
@@ -245,7 +243,7 @@
 			files = (
 				65CAD12E20AE0E0B00886CDB /* Main.storyboard in Resources */,
 				65CAD12520AE0E0B00886CDB /* GameScene.sks in Resources */,
-				65CAD15720BC678600886CDB /* player.png in Resources */,
+				6566737A20C79B1200E088DD /* player.png in Resources */,
 				65CAD13020AE0E0E00886CDB /* Assets.xcassets in Resources */,
 				65CAD13320AE0E0E00886CDB /* LaunchScreen.storyboard in Resources */,
 				65CAD12720AE0E0B00886CDB /* Actions.sks in Resources */,
