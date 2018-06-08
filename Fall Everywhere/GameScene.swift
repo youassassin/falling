@@ -27,28 +27,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
     
 
     @objc func x() {
-        var position = CGPoint(x: 0, y: 0)
-        var circle = SKShapeNode(circleOfRadius: self.radius)
-        var maxHoles = self.maxBreaks()
+        let position = CGPoint(x: 0, y: 0)
+        let width = CGFloat(5)
+        let circle = SKShapeNode(circleOfRadius: self.radius)
+        let maxHoles = self.maxBreaks()
         circle.position = position
         circle.strokeColor = SKColor.white
         circle.lineWidth = 10.0
         circle.fillColor = SKColor.clear
-        var path = circle.path!
 //        path.li
         circle.physicsBody = SKPhysicsBody(edgeLoopFrom: circle.path!)
 //        self.addChild(circle)
-        var offset = atan(min(screenW, screenH)/max(screenH, screenW))
-        var arc = UIBezierPath(arcCenter: position, radius: self.radius/2, startAngle: 3*CGFloat.pi/2-offset, endAngle: 3*CGFloat.pi/2+offset, clockwise: true)
-        var square = SKShapeNode(path: arc.cgPath)
-        square.strokeColor = SKColor.white
-        square.lineWidth = 10.0
-        square.fillColor = SKColor.clear
-        square.physicsBody = SKPhysicsBody(c)
-        self.addChild(square)
+        let offset = atan(min(screenW, screenH)/max(screenH, screenW))
+        let start = 3*CGFloat.pi/2-offset
+        let end = 3*CGFloat.pi/2+offset
+        let inner = self.radius/2-width
+        let outer = self.radius/2+width
+        
+        let arc = UIBezierPath(arcCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
+        arc.addLine(to: CGPoint(x: outer * cos(end), y: outer * sin(end)))
+        arc.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
+        let shape = SKShapeNode(path: arc.cgPath)
+        shape.strokeColor = SKColor.white
+        shape.lineWidth = 2
+        shape.fillColor = SKColor.blue
+        shape.physicsBody = SKPhysicsBody(polygonFrom: arc.cgPath)
+        shape.physicsBody?.isDynamic = false
+        self.addChild(shape)
         
         if debug {
-            var point = SKShapeNode(circleOfRadius: CGFloat(5))
+            let point = SKShapeNode(circleOfRadius: CGFloat(5))
         point.position = position
         point.fillColor = SKColor.red
         self.addChild(point)
