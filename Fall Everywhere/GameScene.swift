@@ -27,23 +27,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
     
 
     @objc func x() {
-        let position = CGPoint(x: 0, y: 0)
+        
+        let nx = CGFloat(0)
+        let ny = CGFloat(200)
+        let position = CGPoint(x: nx, y: ny)
         let width = CGFloat(5)
-        let circle = SKShapeNode(circleOfRadius: self.radius)
         let maxHoles = self.maxBreaks()
-        let points = 2
-        circle.position = position
-        circle.strokeColor = SKColor.white
-        circle.lineWidth = 10.0
-        circle.fillColor = SKColor.clear
-//        path.li
-        circle.physicsBody = SKPhysicsBody(edgeLoopFrom: circle.path!)
-//        self.addChild(circle)
+        let points = 8
         let offset = atan(min(screenW, screenH)/max(screenH, screenW))
         let start = 3*CGFloat.pi/2-offset
         let end = 3*CGFloat.pi/2+offset
-        let inner = self.radius/2-width
-        let outer = self.radius/2+width
+        let inner = self.radius-width
+        let outer = self.radius+width
         
         let arc = UIBezierPath()
         arc.addArc(withCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
@@ -51,43 +46,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
         arc.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
         arc.close()
         
-        let parc = UIBezierPath()
-        parc.addArc(withCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
-        parc.addArc(withCenter: position, radius: inner, startAngle: end, endAngle: start, clockwise: false)
-        parc.close()
-        
-        let parc2 = UIBezierPath()
-        parc2.addArc(withCenter: position, radius: outer, startAngle: start, endAngle: end, clockwise: true)
-        parc2.addLine(to: CGPoint(x: outer * cos(end), y: outer * sin(end)))
-        parc2.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
-        parc2.close()
-        
         let shape = SKShapeNode(path: arc.cgPath)
         shape.strokeColor = SKColor.clear
-        shape.fillColor = SKColor.clear
+        shape.fillColor = SKColor.white
         
-//        let parc = UIBezierPath()
-//        var q = CGFloat(start)
-//        parc.move(to: CGPoint(x: inner * cos(q), y: inner * sin(q)))
-//        for i in 1...(points*2+1)
-//        {
-//            parc.addLine(to: CGPoint(x: inner * cos(q), y: inner * sin(q)))
-//            q += (offset/CGFloat(points))
-//        }
-//        q = CGFloat(end)
-//        for i in 1...(points*2+1)
-//        {
-//            parc.addLine(to: CGPoint(x: outer * cos(q), y: outer * sin(q)))
-//            q -= (offset/CGFloat(points))
-//        }
-//        parc.addLine(to: CGPoint(x: inner * cos(start), y: inner * sin(start)))
-//        parc.close()
-
-//        let path = shape.path
-//        let size = path!.boundingBox.size
-//        print(path!.boundingBox.origin)
-//        shape.physicsBody = SKPhysicsBody(texture: (self.view?.texture(from: shape))!, size: size)
-        shape.physicsBody = SKPhysicsBody(bodies: [SKPhysicsBody(polygonFrom: parc.cgPath), SKPhysicsBody(polygonFrom: parc2.cgPath)])
+        var bodies = [SKPhysicsBody]()
+        var q = CGFloat(start)
+        for i in 1...(points*2)
+        {
+            let parc = UIBezierPath()
+            parc.move(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
+            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
+            q += (offset/CGFloat(points))
+            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
+            parc.addLine(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
+            parc.close()
+            bodies.append(SKPhysicsBody(polygonFrom: parc.cgPath))
+        }
+        
+        shape.physicsBody = SKPhysicsBody(bodies: bodies)
+        
         shape.physicsBody?.isDynamic = false
         self.addChild(shape)
         
