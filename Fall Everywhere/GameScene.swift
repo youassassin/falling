@@ -47,11 +47,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
         let arc = UIBezierPath(arcCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
         arc.addLine(to: CGPoint(x: outer * cos(end), y: outer * sin(end)))
         arc.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
+        arc.close()
         let shape = SKShapeNode(path: arc.cgPath)
-        shape.strokeColor = SKColor.white
-        shape.lineWidth = 2
-        shape.fillColor = SKColor.blue
-        shape.physicsBody = SKPhysicsBody(polygonFrom: arc.cgPath)
+        shape.strokeColor = SKColor.clear
+        shape.fillColor = SKColor.white
+        let path = shape.path
+        let size = path!.boundingBox.size
+        print(path!.boundingBox.origin)
+        shape.physicsBody = SKPhysicsBody(texture: (self.view?.texture(from: shape))!, size: size)
         shape.physicsBody?.isDynamic = false
         self.addChild(shape)
         
