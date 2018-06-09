@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6566737A20C79B1200E088DD /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 6566737920C79B1200E088DD /* player.png */; };
+		65A8C69C20CB650E002F21D7 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A8C69B20CB650E002F21D7 /* Wall.swift */; };
 		65CAD12320AE0E0B00886CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAD12220AE0E0B00886CDB /* AppDelegate.swift */; };
 		65CAD12520AE0E0B00886CDB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD12420AE0E0B00886CDB /* GameScene.sks */; };
 		65CAD12720AE0E0B00886CDB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 65CAD12620AE0E0B00886CDB /* Actions.sks */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		6566737920C79B1200E088DD /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		65A8C69B20CB650E002F21D7 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		65CAD11F20AE0E0B00886CDB /* Fall Everywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fall Everywhere.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CAD12220AE0E0B00886CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65CAD12420AE0E0B00886CDB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				65CAD12420AE0E0B00886CDB /* GameScene.sks */,
 				65CAD12620AE0E0B00886CDB /* Actions.sks */,
 				65CAD12820AE0E0B00886CDB /* GameScene.swift */,
+				65A8C69B20CB650E002F21D7 /* Wall.swift */,
 				65CAD12A20AE0E0B00886CDB /* GameViewController.swift */,
 				65CAD12C20AE0E0B00886CDB /* Main.storyboard */,
 				65CAD12F20AE0E0E00886CDB /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65CAD12920AE0E0B00886CDB /* GameScene.swift in Sources */,
+				65A8C69C20CB650E002F21D7 /* Wall.swift in Sources */,
 				65CAD12B20AE0E0B00886CDB /* GameViewController.swift in Sources */,
 				65CAD12320AE0E0B00886CDB /* AppDelegate.swift in Sources */,
 			);

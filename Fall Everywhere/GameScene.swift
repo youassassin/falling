@@ -28,46 +28,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate 
 
     @objc func x() {
         
-        let nx = CGFloat(0)
-        let ny = CGFloat(200)
-        let position = CGPoint(x: nx, y: ny)
-        let width = CGFloat(5)
-        let maxHoles = self.maxBreaks()
-        let points = 8
-        let offset = atan(min(screenW, screenH)/max(screenH, screenW))
-        let start = 3*CGFloat.pi/2-offset
-        let end = 3*CGFloat.pi/2+offset
-        let inner = self.radius-width
-        let outer = self.radius+width
-        
-        let arc = UIBezierPath()
-        arc.addArc(withCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
-        arc.addLine(to: CGPoint(x: outer * cos(end), y: outer * sin(end)))
-        arc.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
-        arc.close()
-        
-        let shape = SKShapeNode(path: arc.cgPath)
-        shape.strokeColor = SKColor.clear
-        shape.fillColor = SKColor.white
-        
-        var bodies = [SKPhysicsBody]()
-        var q = CGFloat(start)
-        for i in 1...(points*2)
-        {
-            let parc = UIBezierPath()
-            parc.move(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
-            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
-            q += (offset/CGFloat(points))
-            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
-            parc.addLine(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
-            parc.close()
-            bodies.append(SKPhysicsBody(polygonFrom: parc.cgPath))
-        }
-        
-        shape.physicsBody = SKPhysicsBody(bodies: bodies)
-        
-        shape.physicsBody?.isDynamic = false
-        self.addChild(shape)
+//        let nx = CGFloat(0)
+//        let ny = CGFloat(200)
+//        let position = CGPoint(x: nx, y: ny)
+//        let width = CGFloat(10)
+//        let maxHoles = self.maxBreaks()
+//        let points = 8
+//        let offset = atan(min(screenW, screenH)/max(screenH, screenW))*2
+//        let start = 3*CGFloat.pi/2
+//        let end = 3*CGFloat.pi/2+offset
+//        let inner = self.radius
+//        let outer = self.radius+width
+//
+//        let arc = UIBezierPath()
+//        arc.addArc(withCenter: position, radius: inner, startAngle: start, endAngle: end, clockwise: true)
+//        arc.addLine(to: CGPoint(x: outer * cos(end), y: outer * sin(end)))
+//        arc.addArc(withCenter: position, radius: outer, startAngle: end, endAngle: start, clockwise: false)
+//        arc.close()
+//
+//        let shape = SKShapeNode(path: arc.cgPath)
+//        shape.strokeColor = SKColor.clear
+//        shape.fillColor = SKColor.white
+//
+//        var bodies = [SKPhysicsBody]()
+//        var q = CGFloat(start)
+//        for i in 1...(points*2)
+//        {
+//            let parc = UIBezierPath()
+//            parc.move(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
+//            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
+//            q += (offset/CGFloat(points))
+//            parc.addLine(to: CGPoint(x: outer * cos(q) + nx, y: outer * sin(q) + ny))
+//            parc.addLine(to: CGPoint(x: inner * cos(q) + nx, y: inner * sin(q) + ny))
+//            parc.close()
+//            bodies.append(SKPhysicsBody(polygonFrom: parc.cgPath))
+//        }
+//
+//        shape.physicsBody = SKPhysicsBody(bodies: bodies)
+//
+//        shape.physicsBody?.isDynamic = false
+        let w = Wall(breaks: self.maxBreaks(), screenWidth: screenW, screenHeight: screenH)
+        self.addChild(w.getShape())
         
         if debug {
             let point = SKShapeNode(circleOfRadius: CGFloat(5))
