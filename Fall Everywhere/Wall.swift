@@ -12,10 +12,9 @@ import GameplayKit
 
 class Wall {
     
-    
     private let x : CGFloat
     private let y : CGFloat
-    private let position : CGPoint
+    private let center : CGPoint
     private let width : CGFloat
     private let maxHoles : CGFloat
     private let points : Int
@@ -30,7 +29,7 @@ class Wall {
     init(breaks maxBreaks: CGFloat, screenWidth screenW: CGFloat, screenHeight screenH: CGFloat) {
         self.x = 0
         self.y = 200
-        self.position = CGPoint(x: x, y: y)
+        self.center = CGPoint(x: x, y: y)
         self.width = 10
         self.maxHoles = maxBreaks
         self.points = 8
@@ -40,9 +39,9 @@ class Wall {
         self.innerRadius = CGFloat(sqrtf(Float(pow(screenW, 2) + pow(screenH, 2))))
         self.outerRadius = self.innerRadius + self.width
         self.circlePath = UIBezierPath()
-        self.circlePath.addArc(withCenter: self.position, radius: self.innerRadius, startAngle: self.startAngle, endAngle: self.endAngle, clockwise: true)
+        self.circlePath.addArc(withCenter: self.center, radius: self.innerRadius, startAngle: self.startAngle, endAngle: self.endAngle, clockwise: true)
         self.circlePath.addLine(to: CGPoint(x: self.outerRadius * cos(self.endAngle), y: self.outerRadius * sin(self.endAngle)))
-        self.circlePath.addArc(withCenter: self.position, radius: self.outerRadius, startAngle: self.endAngle, endAngle: self.startAngle, clockwise: false)
+        self.circlePath.addArc(withCenter: self.center, radius: self.outerRadius, startAngle: self.endAngle, endAngle: self.startAngle, clockwise: false)
         self.circlePath.close()
         self.circleShape = SKShapeNode(path: self.circlePath.cgPath)
         self.circleShape.strokeColor = SKColor.clear
